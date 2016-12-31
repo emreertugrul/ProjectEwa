@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.2">
+  <CommandSet xml:lang="en-us" Name="EvaVoiceCommands">
+    <CommandPrefix>Jeff</CommandPrefix>
+    <Example>who is</Example>
+    <Command Name="showLights">
+      <Example>who is</Example>
+      <ListenFor>turn on the lights</ListenFor>
+      <Feedback>Let's see who jeff is...</Feedback>
+      <VoiceCommandService Target="EvaListener"/>
+    </Command>
+    <Command Name="switchLight">
+      <Example>turn the bedroom lights on</Example>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase">turn [the] {dictatedLocation} lights {onOffStatus}</ListenFor>
+      <Feedback>Just looking for that light for you...</Feedback>
+      <VoiceCommandService Target="EvaListener"/>
+    </Command>
+    <Command Name="open">
+      <Example> Switch on lights </Example>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase">switch on lights</ListenFor>
+      <Feedback> Opening your lights </Feedback>
+      <VoiceCommandService Target="EvaListener"/>
+    </Command>
+    <PhraseList Label="onOffStatus">
+      <Item>On</Item>
+      <Item>Off</Item>
+    </PhraseList>
+    <PhraseTopic Label="dictatedLocation" Scenario="Natural Language">
+    </PhraseTopic>
+  </CommandSet>
+</VoiceCommands>

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Background;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -31,6 +32,48 @@ namespace Ewa.IOT.RPI
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
+
+        protected override void OnActivated(IActivatedEventArgs args)
+        {
+            base.OnActivated(args);
+
+            Type navigationToPageType;
+
+            // If the app was launched via a Voice Command, this corresponds to the "show trip to <location>" command. 
+            // Protocol activation occurs when a tile is clicked within Cortana (via the background task)
+            if (args.Kind == ActivationKind.VoiceCommand)
+            {
+                // The arguments can represent many different activation types. Cast it so we can get the
+                // parameters we care about out.
+                var commandArgs = args as VoiceCommandActivatedEventArgs;
+                Windows.Media.SpeechRecognition.SpeechRecognitionResult speechRecognitionResult = commandArgs.Result;
+
+                // Get the name of the voice command and the text spoken. See AdventureWorksCommands.xml for
+                // the <Command> tags this can be filled with.
+                string voiceCommandName = speechRecognitionResult.RulePath[0];
+                string textSpoken = speechRecognitionResult.Text;
+
+                // The commandMode is either "voice" or "text", and it indictes how the voice command
+                // was entered by the user.
+                // Apps should respect "text" mode by providing feedback in silent form.
+
+
+            }
+
+            else if (args.Kind == ActivationKind.Protocol)
+
+            {
+
+            }
+
+            else
+
+            {
+
+            }          
+
+        }
+
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
@@ -65,6 +108,8 @@ namespace Ewa.IOT.RPI
                 Window.Current.Content = rootFrame;
             }
 
+            //RegisterBackgroundTask();
+
             if (e.PrelaunchActivated == false)
             {
                 if (rootFrame.Content == null)
@@ -76,6 +121,33 @@ namespace Ewa.IOT.RPI
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();
+            }
+        }
+
+        private void RegisterBackgroundTask()
+        {
+            var taskRegistered = false;
+            var exampleTaskName = "EvaBackgroundListener";
+
+            foreach (var task in BackgroundTaskRegistration.AllTasks)
+            {
+                if (task.Value.Name == exampleTaskName)
+                {
+                    task.Value.Unregister(true);
+                    taskRegistered = false;
+                    break;
+                }
+            }
+
+            if (!taskRegistered)
+            {
+                var builder = new BackgroundTaskBuilder();
+
+                builder.Name = exampleTaskName;
+                builder.TaskEntryPoint = "Eva.Windows.BackgroundTask.EvaBackgroundListener";
+                builder.SetTrigger(new TimeTrigger(15, false));
+                builder.AddCondition(new SystemCondition(SystemConditionType.UserPresent));
+                BackgroundTaskRegistration task = builder.Register();
             }
         }
 

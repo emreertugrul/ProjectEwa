@@ -7,7 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    </Grid>
+    <StackPanel VerticalAlignment="Center" Orientation="Vertical" DataContext="{Binding}" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock x:Name="txtSpeechResult" Foreground="Black" Text="speak"></TextBlock>
+        <TextBlock x:Name="txtSpeechState" Foreground="Black" Text="state"></TextBlock>
+    </StackPanel>
 </Page>
