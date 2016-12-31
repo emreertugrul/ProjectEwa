@@ -21,8 +21,8 @@
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
       <Extensions>
-        <uap:Extension Category="windows.appService" EntryPoint="Eva.IOT.CortanaListener.EvaCortanaListener">
-          <uap:AppService Name="EvaListener" />
+        <uap:Extension Category="windows.appService" EntryPoint="Ewa.IOT.CortanaListener.EwaCortanaListener">
+          <uap:AppService Name="EwaListener" />
         </uap:Extension>
       </Extensions>
     </Application>

@@ -7,10 +7,10 @@ using Windows.ApplicationModel.AppService;
 using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.VoiceCommands;
 
-namespace Eva.IOT.CortanaListener
+namespace Ewa.IOT.CortanaListener
 {
 
-    public sealed class EvaCortanaListener : IBackgroundTask
+    public sealed class EwaCortanaListener : IBackgroundTask
     {
         VoiceCommandServiceConnection voiceServiceConnection;
         BackgroundTaskDeferral serviceDeferral;
@@ -21,7 +21,7 @@ namespace Eva.IOT.CortanaListener
             taskInstance.Canceled += OnTaskCanceled;
             var triggerDetails = taskInstance.TriggerDetails as AppServiceTriggerDetails;
 
-            if (triggerDetails != null && triggerDetails.Name == "EvaListener")
+            if (triggerDetails != null && triggerDetails.Name == "EwaListener")
             {
                 try
                 {
@@ -41,8 +41,8 @@ namespace Eva.IOT.CortanaListener
                     {
                         default:
                             VoiceCommandUserMessage userMessage = new VoiceCommandUserMessage();
-                            userMessage.DisplayMessage = "shh! Eva is still sleeping...";
-                            userMessage.SpokenMessage = "shh! Eva is still sleeping...";
+                            userMessage.DisplayMessage = "shh! Ewa is still sleeping...";
+                            userMessage.SpokenMessage = "shh! Ewa is still sleeping...";
                             VoiceCommandResponse response = VoiceCommandResponse.CreateResponse(userMessage, null);
                             await voiceServiceConnection.ReportSuccessAsync(response);
                             break;

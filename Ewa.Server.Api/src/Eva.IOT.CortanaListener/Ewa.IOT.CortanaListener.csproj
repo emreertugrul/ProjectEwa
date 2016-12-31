@@ -7,8 +7,8 @@
     <ProjectGuid>{EDF1FDED-8811-41EE-9390-71010D2BE7FE}</ProjectGuid>
     <OutputType>winmdobj</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Eva.IOT.CortanaListener</RootNamespace>
-    <AssemblyName>Eva.IOT.CortanaListener</AssemblyName>
+    <RootNamespace>Ewa.IOT.CortanaListener</RootNamespace>
+    <AssemblyName>Ewa.IOT.CortanaListener</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>
