@@ -18,13 +18,14 @@ using Windows.UI.Core;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.ApplicationModel.VoiceCommands;
+using Ewa.IOT.Common.Settings;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace Ewa.IOT.RPI
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// Test ground for all stuff. This page will be replaced by real UI page when ready.
     /// </summary>
     public sealed partial class MainPage : Page
     {
@@ -34,7 +35,7 @@ namespace Ewa.IOT.RPI
         public MainPage()
         {
             this.InitializeComponent();
-            //Compile the dictation grammar by default.
+
             this.dispatcher = CoreWindow.GetForCurrentThread().Dispatcher;
             listener.OnSpeechResult += Listener_OnSpeechResult;
             listener.OnStateChanged += Listener_OnStateChanged;
@@ -60,6 +61,13 @@ namespace Ewa.IOT.RPI
         {
             base.OnNavigatedTo(e);
             await RegisterVoiceCommands();
+
+            if (SettingsManager.IOTDeviceId != null && SettingsManager.IOTHubDeviceKey != null)
+            {
+                txtDeviceId.Text = SettingsManager.IOTDeviceId;
+                txtDeviceKey.Text = SettingsManager.IOTHubDeviceKey;
+
+            }
         }
 
         private async Task RegisterVoiceCommands()
@@ -73,7 +81,29 @@ namespace Ewa.IOT.RPI
             {
                 throw;
             }
+           
 
+        }
+
+        private async void btnSendMessage_Click(object sender, RoutedEventArgs e)
+        {
+            Common.IOT.IotHubManager.InitializeDeviceClient();
+            await Common.IOT.IotHubManager.SendDeviceToCloudMessagesAsync();
+        }
+
+        private void btnRegister_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsManager.IOTDeviceId = txtDeviceId.Text;
+            SettingsManager.IOTHubDeviceKey = txtDeviceKey.Text;
+        }
+
+        private async void btnReceive_Click(object sender, RoutedEventArgs e)
+        {
+            await Common.IOT.IotHubManager.StartReceiveCloudToDeviceMessagesAsync((s)=>
+            {
+                listMessages.Items.Add(s);
+                return true;
+            });
         }
     }
 }

@@ -39,12 +39,13 @@ namespace Ewa.IOT.CortanaListener
 
                     switch(voiceCommand.CommandName)
                     {
+                        case "switchLight":
+                            var room = voiceCommand.SpeechRecognitionResult.SemanticInterpretation.Properties["dictatedLocation"];                            
+                            string message = $"Did you just say {room.FirstOrDefault()}?";
+                            await SpeekBackUsingCortana(message, message);
+                            break;
                         default:
-                            VoiceCommandUserMessage userMessage = new VoiceCommandUserMessage();
-                            userMessage.DisplayMessage = "shh! Ewa is still sleeping...";
-                            userMessage.SpokenMessage = "shh! Ewa is still sleeping...";
-                            VoiceCommandResponse response = VoiceCommandResponse.CreateResponse(userMessage, null);
-                            await voiceServiceConnection.ReportSuccessAsync(response);
+                            await SpeekBackUsingCortana("Sh! Eva is sleeping...", "Sh! Eva is sleeping...");
                             break;
                     }
                 }
@@ -54,6 +55,16 @@ namespace Ewa.IOT.CortanaListener
                 }        // Once the asynchronous method(s) are done, close the deferral
                 serviceDeferral.Complete();
             }
+        }
+
+        private async Task SpeekBackUsingCortana(string spokenText, string displayText)
+        {
+            VoiceCommandUserMessage userMessage = new VoiceCommandUserMessage();
+            userMessage.DisplayMessage = displayText;
+            userMessage.SpokenMessage = spokenText;
+            VoiceCommandResponse response = VoiceCommandResponse.CreateResponse(userMessage, null);
+            await voiceServiceConnection.ReportSuccessAsync(response);
+
         }
 
         private void OnVoiceCommandCompleted(VoiceCommandServiceConnection sender, VoiceCommandCompletedEventArgs args)

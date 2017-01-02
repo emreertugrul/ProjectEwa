@@ -108,8 +108,14 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EvaCortanaListener.cs" />
+    <Compile Include="EwaCortanaListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ewa.IOT.Common\Ewa.IOT.Common.csproj">
+      <Project>{479f462e-2d1f-4c17-9bf5-86b56d51bbc8}</Project>
+      <Name>Ewa.IOT.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

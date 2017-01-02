@@ -7,8 +7,20 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel VerticalAlignment="Center" Orientation="Vertical" DataContext="{Binding}" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock x:Name="txtSpeechResult" Foreground="Black" Text="speak"></TextBlock>
-        <TextBlock x:Name="txtSpeechState" Foreground="Black" Text="state"></TextBlock>
+    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Orientation="Vertical" VerticalAlignment="Center">
+        <StackPanel >
+            <TextBlock x:Name="txtSpeechResult" Foreground="Black" Text="speak"></TextBlock>
+            <TextBlock x:Name="txtSpeechState" Foreground="Black" Text="state"></TextBlock>
+        </StackPanel>
+        <StackPanel>
+            <TextBox x:Name="txtDeviceId" Text="mytestdevice1"></TextBox>
+            <TextBox x:Name="txtDeviceKey" ></TextBox>
+            <Button x:Name="btnRegister" Content="Register" Click="btnRegister_Click"></Button>
+            <Button x:Name="btnSendMessage" Content="SEND MESSAGE" Click="btnSendMessage_Click" ></Button>
+        </StackPanel>
+        <StackPanel>
+            <Button x:Name="btnReceive" Click="btnReceive_Click"></Button>
+            <ListBox x:Name="listMessages"></ListBox>
+        </StackPanel>
     </StackPanel>
 </Page>

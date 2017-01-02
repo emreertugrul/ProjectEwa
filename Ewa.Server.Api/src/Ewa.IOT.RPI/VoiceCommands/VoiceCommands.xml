@@ -12,6 +12,8 @@
     <Command Name="switchLight">
       <Example>turn the bedroom lights on</Example>
       <ListenFor RequireAppName="BeforeOrAfterPhrase">turn [the] {dictatedLocation} lights {onOffStatus}</ListenFor>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase">turn {onOffStatus} [the] {dictatedLocation} lights</ListenFor>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase">turn {onOffStatus} [all] [the] lights in [the] {dictatedLocation}</ListenFor>
       <Feedback>Just looking for that light for you...</Feedback>
       <VoiceCommandService Target="EwaListener"/>
     </Command>
