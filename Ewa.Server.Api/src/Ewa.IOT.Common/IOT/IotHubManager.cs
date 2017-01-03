@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Azure.Devices;
-using Ewa.IOT.Common.Settings;
+using Ewa.MessageObjects.Common.Settings;
 using Microsoft.Azure.Devices.Client;
 using Newtonsoft.Json;
 
-namespace Ewa.IOT.Common.IOT
+namespace Ewa.MessageObjects.Common.IOT
 {
     /// <summary>
     /// Manages IOT Hub operations

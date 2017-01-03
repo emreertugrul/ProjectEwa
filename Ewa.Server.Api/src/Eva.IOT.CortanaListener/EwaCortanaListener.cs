@@ -7,7 +7,7 @@ using Windows.ApplicationModel.AppService;
 using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.VoiceCommands;
 
-namespace Ewa.IOT.CortanaListener
+namespace Ewa.MessageObjects.CortanaListener
 {
 
     public sealed class EwaCortanaListener : IBackgroundTask

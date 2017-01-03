@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ewa.IOT.Common.Settings
+namespace Ewa.MessageObjects.Common.Settings
 {
     public static class SettingsManager
     {

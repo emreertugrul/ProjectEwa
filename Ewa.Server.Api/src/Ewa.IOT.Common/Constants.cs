@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ewa.IOT.Common
+namespace Ewa.MessageObjects.Common
 {
     /// <summary>
     /// Holds constants on related projects.

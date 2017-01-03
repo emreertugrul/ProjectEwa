@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace Ewa.Server.Api
+namespace Ewa.Server.API
 {
     public class Startup
     {

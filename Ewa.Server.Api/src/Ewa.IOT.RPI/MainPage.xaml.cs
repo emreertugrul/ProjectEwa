@@ -18,11 +18,11 @@ using Windows.UI.Core;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.ApplicationModel.VoiceCommands;
-using Ewa.IOT.Common.Settings;
+using Ewa.MessageObjects.Common.Settings;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
-namespace Ewa.IOT.RPI
+namespace Ewa.MessageObjects.RPI
 {
     /// <summary>
     /// Test ground for all stuff. This page will be replaced by real UI page when ready.
@@ -62,12 +62,12 @@ namespace Ewa.IOT.RPI
             base.OnNavigatedTo(e);
             await RegisterVoiceCommands();
 
-            if (SettingsManager.IOTDeviceId != null && SettingsManager.IOTHubDeviceKey != null)
-            {
-                txtDeviceId.Text = SettingsManager.IOTDeviceId;
-                txtDeviceKey.Text = SettingsManager.IOTHubDeviceKey;
+            //if (SettingsManager.IOTDeviceId != null && SettingsManager.IOTHubDeviceKey != null)
+            //{
+            //    txtDeviceId.Text = SettingsManager.IOTDeviceId;
+            //    txtDeviceKey.Text = SettingsManager.IOTHubDeviceKey;
 
-            }
+            //}
         }
 
         private async Task RegisterVoiceCommands()

@@ -6,8 +6,8 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>94d155aa-0293-4c70-bfa0-e790fa147218</ProjectGuid>
-    <RootNamespace>Ewa.Server.Api</RootNamespace>
+    <ProjectGuid>91786a6b-2196-489b-8ec0-f7949be282d0</ProjectGuid>
+    <RootNamespace>Ewa.Server.API</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
@@ -16,5 +16,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ApplicationInsightsResourceId>/subscriptions/014bea46-d424-4d9d-a557-45fb95fcf2ef/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/Ewa.Server.Api</ApplicationInsightsResourceId>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ewa.MessageObjects\Ewa.MessageObjects.csproj" />
+  </ItemGroup>
   <Import Project="$(VSToolsPath)\DotNet.Web\Microsoft.DotNet.Web.targets" Condition="'$(VSToolsPath)' != ''" />
 </Project>

@@ -1,8 +1,8 @@
 ﻿<Application
-    x:Class="Ewa.IOT.RPI.App"
+    x:Class="Ewa.MessageObjects.RPI.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Ewa.IOT.RPI"
+    xmlns:local="using:Ewa.MessageObjects.RPI"
     RequestedTheme="Light">
 
 </Application>
