@@ -83,6 +83,7 @@ namespace Ewa.MessageObjects.Common.IOT
                 Message receivedMessage = await client.ReceiveAsync();
                 if (receivedMessage == null) continue;
 
+                
                 var msg = Encoding.ASCII.GetString(receivedMessage.GetBytes());
                 var result = f?.Invoke(msg);
                 //TODO: Handle message when the function returns false

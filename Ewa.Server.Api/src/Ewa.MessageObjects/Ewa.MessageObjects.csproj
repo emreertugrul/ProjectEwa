@@ -39,7 +39,8 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Messaging\CommandMessage.cs" />
+    <Compile Include="Messaging\BaseCommandMessage.cs" />
+    <Compile Include="Messaging\OnOffCommandMessage.cs" />
     <Compile Include="Messaging\Commands\BaseCommand.cs" />
     <Compile Include="Messaging\Commands\ICommand.cs" />
     <Compile Include="Messaging\Commands\OnOffCommand.cs" />

@@ -1,5 +1,6 @@
 ﻿using Ewa.MessageObjects;
 using Ewa.MessageObjects.Commands;
+using Ewa.MessageObjects.Messaging;
 using Ewa.Server.API.Utils;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace Ewa.Server.API.Operators
         public static async Task<string> OperateLight(string lightId, OnOffSwitch onoff)
         {
 
-            var msg = new CommandMessage
+            var msg = new OnOffCommandMessage
             {
                 DeviceId = "testdevice1",
                 CommandType = MessageObjects.Commands.CommandTypes.OnOffCommand,

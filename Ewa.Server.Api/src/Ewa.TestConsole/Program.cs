@@ -28,20 +28,21 @@ namespace Ewa.TestConsole
 
             hubConnection.Start();
 
-            Console.WriteLine("Press any key to send a new message");
+            Console.WriteLine("Enter 1 to turn on, 0 to turn off");
 
 
 
             while (true)
             {
-                Console.ReadLine();
+               string command = Console.ReadLine();
 
                 HttpClient client = new HttpClient();
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
+                
 
-                var res = client.PostAsync("http://localhost:5000/api/lights/aaa/1", null).Result;
+                var res = client.PostAsync($"http://localhost:5000/api/lights/4/{command}", null).Result;
 
 
                 Console.WriteLine($"Operation:{ res.Content.ReadAsStringAsync().Result}");

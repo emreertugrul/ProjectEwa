@@ -19,6 +19,10 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.ApplicationModel.VoiceCommands;
 using Ewa.MessageObjects.Common.Settings;
+using Ewa.MessageObjects.Device.GPIO;
+using Newtonsoft.Json;
+using Ewa.MessageObjects.Commands;
+using Ewa.MessageObjects.Messaging;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -60,16 +64,14 @@ namespace Ewa.MessageObjects.RPI
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            await RegisterVoiceCommands();
+            //await RegisterVoiceCommands();
 
             SettingsManager.IOTDeviceId = "testdevice1";
             SettingsManager.IOTHubDeviceKey = "ZCA3r9t44jPfRvnx2OvoOnWwr9b5nyjyurScnGsU5+Y=";
-            //if (SettingsManager.IOTDeviceId != null && SettingsManager.IOTHubDeviceKey != null)
-            //{
-            //    txtDeviceId.Text = SettingsManager.IOTDeviceId;
-            //    txtDeviceKey.Text = SettingsManager.IOTHubDeviceKey;
+            Common.IOT.IotHubManager.InitializeDeviceClient();
 
-            //}
+            GPIOManager.InitializePins(new List<int> { 4 });
+            await StartListeningForCommands();
         }
 
         private async Task RegisterVoiceCommands()
@@ -83,7 +85,7 @@ namespace Ewa.MessageObjects.RPI
             {
                 throw;
             }
-           
+
 
         }
 
@@ -99,9 +101,35 @@ namespace Ewa.MessageObjects.RPI
 
         private async void btnReceive_Click(object sender, RoutedEventArgs e)
         {
-            await Common.IOT.IotHubManager.StartReceiveCloudToDeviceMessagesAsync((s)=>
+            await StartListeningForCommands();
+        }
+
+        private async Task StartListeningForCommands()
+        {
+            await Common.IOT.IotHubManager.StartReceiveCloudToDeviceMessagesAsync((s) =>
             {
                 listMessages.Items.Add(s);
+
+                var msg = JsonConvert.DeserializeObject<OnOffCommandMessage>(s);
+                dynamic message = JsonConvert.DeserializeObject(s);
+
+
+
+                if (msg is OnOffCommandMessage)
+                {
+                    OnOffCommandMessage cmdMsg = msg as OnOffCommandMessage;
+                    
+                    if (cmdMsg.Command.OnOff == OnOffSwitch.On)
+                    {
+                        GPIOManager.TurnPinOn(int.Parse(cmdMsg.Command.TargetName));
+                    }
+                    else
+                    {
+                        GPIOManager.TurnPinOff(int.Parse(cmdMsg.Command.TargetName));
+                    }
+
+                }
+
                 return true;
             });
         }

@@ -5,15 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ewa.MessageObjects
+namespace Ewa.MessageObjects.Messaging
 {
-    public class CommandMessage : IMessage
+    public class BaseCommandMessage : IMessage
     {
         public string CommandName { get; set; }
         public CommandTypes CommandType { get; set; }
-        public ICommand Command { get; set; }
-
         public string DeviceId { get; set; }
     }
-
 }
