@@ -62,6 +62,8 @@ namespace Ewa.MessageObjects.RPI
             base.OnNavigatedTo(e);
             await RegisterVoiceCommands();
 
+            SettingsManager.IOTDeviceId = "testdevice1";
+            SettingsManager.IOTHubDeviceKey = "ZCA3r9t44jPfRvnx2OvoOnWwr9b5nyjyurScnGsU5+Y=";
             //if (SettingsManager.IOTDeviceId != null && SettingsManager.IOTHubDeviceKey != null)
             //{
             //    txtDeviceId.Text = SettingsManager.IOTDeviceId;
@@ -87,14 +89,12 @@ namespace Ewa.MessageObjects.RPI
 
         private async void btnSendMessage_Click(object sender, RoutedEventArgs e)
         {
-            Common.IOT.IotHubManager.InitializeDeviceClient();
             await Common.IOT.IotHubManager.SendDeviceToCloudMessagesAsync();
         }
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
-            SettingsManager.IOTDeviceId = txtDeviceId.Text;
-            SettingsManager.IOTHubDeviceKey = txtDeviceKey.Text;
+            Common.IOT.IotHubManager.InitializeDeviceClient();
         }
 
         private async void btnReceive_Click(object sender, RoutedEventArgs e)

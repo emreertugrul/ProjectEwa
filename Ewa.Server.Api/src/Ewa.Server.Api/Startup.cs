@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Serialization;
 
 namespace Ewa.Server.API
 {
@@ -37,7 +38,11 @@ namespace Ewa.Server.API
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
 
-            services.AddMvc();
+            services.AddMvc()
+            .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
@@ -51,6 +56,8 @@ namespace Ewa.Server.API
             app.UseApplicationInsightsExceptionTelemetry();
 
             app.UseMvc();
+
+            app.UseSignalR2();
         }
     }
 }

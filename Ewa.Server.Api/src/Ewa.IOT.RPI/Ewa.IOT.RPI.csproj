@@ -133,10 +133,6 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Eva.IOT.CortanaListener\Ewa.IOT.CortanaListener.csproj">
-      <Project>{edf1fded-8811-41ee-9390-71010d2be7fe}</Project>
-      <Name>Ewa.IOT.CortanaListener</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Eva.Speech\Ewa.Speech.csproj">
       <Project>{c0ec5e1d-c85d-4acc-9195-a09ce3bf04ac}</Project>
       <Name>Ewa.Speech</Name>
@@ -145,6 +141,13 @@
       <Project>{479f462e-2d1f-4c17-9bf5-86b56d51bbc8}</Project>
       <Name>Ewa.IOT.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ewa.MessageObjects\Ewa.MessageObjects.csproj">
+      <Project>{9418296f-aab3-496d-bc1e-505e52a78e6e}</Project>
+      <Name>Ewa.MessageObjects</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

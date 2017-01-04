@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "exports": {
+    "Ewa.MessageObjects/1.0.0": {
+      "type": "project",
+      "framework": ".NETFramework,Version=v4.6",
+      "compile": {
+        "bin/Debug/Ewa.MessageObjects.dll": {}
+      },
+      "runtime": {
+        "bin/Debug/Ewa.MessageObjects.dll": {}
+      },
+      "contentFiles": {
+        "bin/Debug/Ewa.MessageObjects.pdb": {
+          "buildAction": "None",
+          "codeLanguage": "any",
+          "copyToOutput": true
+        }
+      }
+    }
+  }
+}

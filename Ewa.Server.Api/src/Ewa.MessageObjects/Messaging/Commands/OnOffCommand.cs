@@ -14,7 +14,7 @@ namespace Ewa.MessageObjects.Commands
 
     public enum OnOffSwitch
     {
-        On = 1,
-        Off = 2
+        Off = 0,
+        On = 1
     }
 }

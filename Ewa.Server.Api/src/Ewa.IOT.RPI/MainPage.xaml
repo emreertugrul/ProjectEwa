@@ -19,7 +19,7 @@
             <Button x:Name="btnSendMessage" Content="SEND MESSAGE" Click="btnSendMessage_Click" ></Button>
         </StackPanel>
         <StackPanel>
-            <Button x:Name="btnReceive" Click="btnReceive_Click"></Button>
+            <Button x:Name="btnReceive" Content="Start Receiving" Click="btnReceive_Click"></Button>
             <ListBox x:Name="listMessages"></ListBox>
         </StackPanel>
     </StackPanel>

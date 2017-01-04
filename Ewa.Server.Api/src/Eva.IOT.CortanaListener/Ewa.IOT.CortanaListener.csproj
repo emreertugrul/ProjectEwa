@@ -116,6 +116,10 @@
       <Project>{479f462e-2d1f-4c17-9bf5-86b56d51bbc8}</Project>
       <Name>Ewa.IOT.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ewa.MessageObjects\Ewa.MessageObjects.csproj">
+      <Project>{9418296f-aab3-496d-bc1e-505e52a78e6e}</Project>
+      <Name>Ewa.MessageObjects</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
