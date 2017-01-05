@@ -137,13 +137,13 @@
       <Project>{c0ec5e1d-c85d-4acc-9195-a09ce3bf04ac}</Project>
       <Name>Ewa.Speech</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ewa.IOT.Capabilities\Ewa.IOT.Operator.csproj">
+      <Project>{468e439f-54b4-4765-9e5b-d11c749824d4}</Project>
+      <Name>Ewa.IOT.Operator</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ewa.IOT.Common\Ewa.IOT.Common.csproj">
       <Project>{479f462e-2d1f-4c17-9bf5-86b56d51bbc8}</Project>
       <Name>Ewa.IOT.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ewa.IOT.Device\Ewa.IOT.Device.csproj">
-      <Project>{D2835239-3126-45F2-A534-006021292B48}</Project>
-      <Name>Ewa.IOT.Device</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ewa.MessageObjects\Ewa.MessageObjects.csproj">
       <Project>{9418296f-aab3-496d-bc1e-505e52a78e6e}</Project>

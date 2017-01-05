@@ -11,18 +11,23 @@ namespace Ewa.Server.API.Operators
 {
     public static class LightsOperator
     {
-        public static async Task<string> OperateLight(string lightId, OnOffSwitch onoff)
+        public static async Task<string> OperateLight(string lightName, OnOffSwitch onoff)
         {
-
-            var msg = new OnOffCommandMessage
+            // Go to database and find out which deviceId has the lightName, and get it's properties (gpiopin etc)
+            var msg = new GPIOOnOffCommandMessage
             {
                 DeviceId = "testdevice1",
-                CommandType = MessageObjects.Commands.CommandTypes.OnOffCommand,
-                CommandName = "turnthelighton",
-                Command = new OnOffCommand
+                MessageType = MessageObjects.Commands.MessageTypes.GPIOOnOf,
+                MessageName = "turnthelighton",
+                Command = new GPIOOnOffCommand(MessageObjects.Controls.ControlTypes.GPIOPinOnOff)
                 {
                     OnOff = onoff,
-                    TargetName = lightId
+                    DeviceControl = new MessageObjects.Controls.GPIOPinControl
+                    {
+                        DevicePinNumber = 4,
+                        Name = lightName,
+                        Synonim = lightName
+                    }
                 }
             };
 

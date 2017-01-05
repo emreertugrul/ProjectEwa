@@ -37,7 +37,7 @@ namespace Ewa.Server.API.Utils
             var msg = new Message(Encoding.ASCII.GetBytes(messageString));
             msg.MessageId = Guid.NewGuid().ToString(); // Give it a unique message id, this will be used to track this message on feedback etc.
             msg.Ack = DeliveryAcknowledgement.Full; // We want full feedback acknowledgement of this message
-            msg.ExpiryTimeUtc = DateTime.UtcNow.AddSeconds(20);
+            msg.ExpiryTimeUtc = DateTime.UtcNow.AddSeconds(30);
             await serviceClient.SendAsync(message.DeviceId, msg);
             return msg.MessageId; // return this to the client to record (then combine with feedback)
         }

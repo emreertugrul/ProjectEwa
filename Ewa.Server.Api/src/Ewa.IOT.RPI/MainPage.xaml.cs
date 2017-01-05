@@ -19,10 +19,10 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.ApplicationModel.VoiceCommands;
 using Ewa.MessageObjects.Common.Settings;
-using Ewa.MessageObjects.Device.GPIO;
 using Newtonsoft.Json;
 using Ewa.MessageObjects.Commands;
 using Ewa.MessageObjects.Messaging;
+using Ewa.IOT.Operator;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -69,8 +69,7 @@ namespace Ewa.MessageObjects.RPI
             SettingsManager.IOTDeviceId = "testdevice1";
             SettingsManager.IOTHubDeviceKey = "ZCA3r9t44jPfRvnx2OvoOnWwr9b5nyjyurScnGsU5+Y=";
             Common.IOT.IotHubManager.InitializeDeviceClient();
-
-            GPIOManager.InitializePins(new List<int> { 4 });
+            
             await StartListeningForCommands();
         }
 
@@ -108,26 +107,15 @@ namespace Ewa.MessageObjects.RPI
         {
             await Common.IOT.IotHubManager.StartReceiveCloudToDeviceMessagesAsync((s) =>
             {
-                listMessages.Items.Add(s);
-
-                var msg = JsonConvert.DeserializeObject<OnOffCommandMessage>(s);
+                listMessages.Items.Add(s);              
                 dynamic message = JsonConvert.DeserializeObject(s);
+                var msgType = (MessageTypes)message.CommandType;
 
 
-
-                if (msg is OnOffCommandMessage)
+                if (msgType == MessageTypes.GPIOOnOf)
                 {
-                    OnOffCommandMessage cmdMsg = msg as OnOffCommandMessage;
-                    
-                    if (cmdMsg.Command.OnOff == OnOffSwitch.On)
-                    {
-                        GPIOManager.TurnPinOn(int.Parse(cmdMsg.Command.TargetName));
-                    }
-                    else
-                    {
-                        GPIOManager.TurnPinOff(int.Parse(cmdMsg.Command.TargetName));
-                    }
-
+                    GPIOOnOffCommandMessage msg = JsonConvert.DeserializeObject<GPIOOnOffCommandMessage>(s);
+                    OperatorCommandBroker.OperateCommand(msg.Command);
                 }
 
                 return true;

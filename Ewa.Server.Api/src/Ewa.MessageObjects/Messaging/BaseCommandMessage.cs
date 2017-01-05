@@ -9,8 +9,8 @@ namespace Ewa.MessageObjects.Messaging
 {
     public class BaseCommandMessage : IMessage
     {
-        public string CommandName { get; set; }
-        public CommandTypes CommandType { get; set; }
+        public string MessageName { get; set; }
+        public MessageTypes MessageType { get; set; }
         public string DeviceId { get; set; }
     }
 }

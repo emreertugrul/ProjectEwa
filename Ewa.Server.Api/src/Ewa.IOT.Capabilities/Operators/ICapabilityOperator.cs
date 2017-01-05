@@ -5,12 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ewa.MessageObjects.Messaging
+namespace Ewa.IOT.Operator.Operators
 {
-    public class OnOffCommandMessage : BaseCommandMessage, IMessage
+    interface ICapabilityOperator
     {
-        public OnOffCommand Command { get; set; }
-        
+        OperationResult Operate(ICommand command);
     }
-
 }
