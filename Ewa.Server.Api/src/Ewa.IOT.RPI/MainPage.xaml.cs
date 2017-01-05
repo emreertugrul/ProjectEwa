@@ -109,7 +109,7 @@ namespace Ewa.MessageObjects.RPI
             {
                 listMessages.Items.Add(s);              
                 dynamic message = JsonConvert.DeserializeObject(s);
-                var msgType = (MessageTypes)message.CommandType;
+                var msgType = (MessageTypes)message.MessageType;
 
 
                 if (msgType == MessageTypes.GPIOOnOf)
